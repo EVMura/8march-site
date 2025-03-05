@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffe6f2;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 90vw;
+            height: 90vh;
+            text-align: center;
+        }
+
+        .slide {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: fadeIn 2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .slide img {
+            max-width: 80%;
+            max-height: 60vh;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 5vw;
+            color: #d63384;
+            margin-top: 20px;
+        }
+
+        .message {
+            font-size: 3vw;
+            color: #ff4081;
+            margin-top: 15px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .emoji-container {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5vw;
+            display: flex;
+            gap: 2vw;
+            animation: moveLeftRight 3s infinite alternate ease-in-out;
+        }
+
+        .music-button {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .music-button:hover {
+            background-color: #d63384;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes moveLeftRight {
+            from { transform: translateX(-50%) translateY(0); }
+            to { transform: translateX(-40%) translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Кнопка для включения музыки -->
+<button class="music-button" onclick="playMusic()">🎵 Включить музыку</button>
+
+<!-- Фоновая музыка -->
+<audio id="background-music" loop>
+    <source src="https://files.catbox.moe/wwpfzm.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+
+<div class="slideshow-container">
+    <div class="slide">
+        <h1>💐 С 8 марта! 🌷</h1>
+        <div class="message">
+            Пусть этот день будет наполнен радостью, любовью и счастьем!<br>
+            Желаю улыбок, прекрасного настроения и весеннего вдохновения! 💖🌸
+        </div>
+        <div class="emoji-container">💖🌸💐🌷🌹</div>
+    </div>
+
+    <div class="slide">
+        <h1>Мама💕</h1>
+        <img src="https://i.postimg.cc/jCXWRqhB/photo1.jpg" alt="Мама">
+        <div class="message">
+            Мамочка, ты самая лучшая! Спасибо за заботу, ласку и тепло.<br>
+            Пусть каждый день приносит тебе только радость! Ты моя гордость! 💖
+        </div>
+        <div class="emoji-container">💖🌷🌹</div>
+    </div>
+
+    <div class="slide">
+        <h1>Аида Тате💖</h1>
+        <img src="https://i.postimg.cc/7fZ5hvsh/photo2.jpg" alt="Аида Тате">
+        <div class="message">
+            Вы моя поддержка и вдохновение!<br>
+            Пусть ваши мечты сбываются, а жизнь будет яркой и счастливой!<br>
+            Я всегда рядом и люблю вас всех! 💕
+        </div>
+        <div class="emoji-container">💖💐🌸</div>
+    </div>
+
+    <div class="slide">
+        <h1>Айнур Женше💐</h1>
+        <img src="https://i.postimg.cc/fV3k7chh/photo3.jpg" alt="Айнур Женше">
+        <div class="message">
+            Вы — прекрасный человек и настоящая поддержка для нашей семьи!<br>
+            Пусть ваша жизнь будет наполнена счастьем, любовью и успехами!<br>
+            Спасибо, что вы с нами! ❤️
+        </div>
+        <div class="emoji-container">🌹💖🌷</div>
+    </div>
+
+    <div class="slide">
+        <h1>Махаббат💕</h1>
+        <img src="https://i.postimg.cc/ZCsCyf2c/photo4.jpg" alt="Младшая сестра">
+        <div class="message">
+            Сестрёнка, ты маленькое солнышко в нашей семье! 🌞<br>
+            Пусть твоя жизнь будет яркой, счастливой и полной радости!<br>
+            Люблю тебя бесконечно! 💖
+        </div>
+        <div class="emoji-container">💐🌸🌷</div>
+    </div>
+</div>
+
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide() {
+        slides.forEach(slide => slide.style.display = "none");
+        slides[slideIndex].style.display = "flex";
+        slideIndex = (slideIndex + 1) % slides.length;
+    }
+
+    showSlide();
+    setInterval(showSlide, 5000);
+
+    function playMusic() {
+        let audio = document.getElementById("background-music");
+        audio.play().then(() => {
+            document.querySelector(".music-button").style.display = "none"; // Скрыть кнопку после запуска
+        }).catch(error => {
+            console.log("Ошибка воспроизведения:", error);
+        });
+    }
+</script>
+
+</body>
+</html>
